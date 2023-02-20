@@ -44,10 +44,32 @@ model = joblib.load("../models/classifier.pkl")
 def index():
     
     # extract data needed for visuals
-    # TODO: Below is an example - modify to extract data for your own visuals
+    #visuals:
+    # - bar chart with the message counts for the different genre type 
+    # - bar chart with the message counts for the different category types
+    # - bar chart with the message counts for the different category types within the genre direct  
+    # - bar chart with the message counts for the different category types within the genre news
+    # - bar chart with the message counts for the different category types within the genre social
+
+    #Message count for the genres
     genre_counts = df.groupby('genre').count()['message']
     genre_names = list(genre_counts.index)
-    
+
+    #Message counts for the categories
+    category_counts = df.iloc[:,4:].sum().sort_values(ascending=False)
+    category_names = list(category_counts.index)
+
+    # Get the top ten categories in the 3 diffrent genres
+    direct_category_counts = df[df['genre'] == 'direct'].iloc[:,4:].sum().sort_values(ascending=False)[0:10]
+    direct_category_names = list(direct_category_counts.index)
+
+    news_category_counts = df[df['genre'] == 'news'].iloc[:,4:].sum().sort_values(ascending=False)[0:10]
+    news_category_names = list(news_category_counts.index)
+
+    social_category_counts = df[df['genre'] == 'social'].iloc[:,4:].sum().sort_values(ascending=False)[0:10]
+    social_category_names = list(social_category_counts.index)
+
+
     # create visuals
     # TODO: Below is an example - modify to create your own visuals
     graphs = [
@@ -68,7 +90,81 @@ def index():
                     'title': "Genre"
                 }
             }
+        },
+        {
+            'data': [
+                Bar(
+                    x=category_names,
+                    y=category_counts
+                )
+            ],
+            
+            'layout': {
+                'title': 'Distribution of Message Categories',
+                'yaxis': {
+                    'title': "Count"
+                },
+                'xaxis': {
+                    'title': "Category"
+                }
+            }
+        },
+        {
+            'data': [
+                Bar(
+                    x=direct_category_names,
+                    y=direct_category_counts
+                )
+            ],
+            
+            'layout': {
+                'title': 'TOP 10 Message Categories In The Direct Genre',
+                'yaxis': {
+                    'title': "Count"
+                },
+                'xaxis': {
+                    'title': "Category"
+                }
+            }
+        },
+        {
+            'data': [
+                Bar(
+                    x=news_category_names,
+                    y=news_category_counts
+                )
+            ],
+            
+            'layout': {
+                'title': 'TOP 10 Message Categories In The News Genre',
+                'yaxis': {
+                    'title': "Count"
+                },
+                'xaxis': {
+                    'title': "Category"
+                }
+            }
+        },
+        {
+            'data': [
+                Bar(
+                    x=social_category_names,
+                    y=social_category_counts
+                )
+            ],
+            
+            'layout': {
+                'title': 'TOP 10 Message Categories In The Social Genre',
+                'yaxis': {
+                    'title': "Count"
+                },
+                'xaxis': {
+                    'title': "Category"
+                }
+            }
         }
+        
+
     ]
     
     # encode plotly graphs in JSON
