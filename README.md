@@ -40,7 +40,7 @@ All of these modules can be installed by using the Anaconda package.
 1. Clone this Github repository to your local computer with python and the needed packages installed.
 
 2. To run ETL pipeline to clean data and store the processed data in the database run from the project's root directory:
-        `python data/process_data.py ./data/disaster_messages.csv data/disaster_categories.csv ./data/DisasterResponseDB.db`
+        `python ./data/process_data.py ./data/disaster_messages.csv data/disaster_categories.csv ./data/DisasterResponseDB.db`
 3. To run the ML pipeline that loads data from DB, trains classifier and saves the classifier as a pickle file run from the project's root directory:
         `python ./models/train_classifier.py ./data/DisasterResponseDB.db ./models/classifier.pkl`
 
