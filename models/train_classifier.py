@@ -49,7 +49,7 @@ def load_data(database_filepath):
 
 
 def build_model():
-    """Build the model with the machine learning algorithm
+    """Build the model with the machine learning algorithm and grid search
 
     Returns:
         model with the machine learning algorithm
@@ -68,7 +68,14 @@ def build_model():
         ('clf', MultiOutputClassifier(RandomForestClassifier()))
     ])
 
-    return pipeline
+    parameters =  {
+        'clf__estimator__n_estimators': [10],
+        'clf__estimator__min_samples_split': [2, 4],
+    }
+
+    cv = GridSearchCV(pipeline, param_grid=parameters) 
+
+    return cv
 
 
 def evaluate_model(model, X_test, Y_test, category_names):
