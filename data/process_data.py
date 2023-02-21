@@ -66,6 +66,9 @@ def clean_data(df):
     # drop duplicates
     df.drop_duplicates(inplace = True)
 
+    # Remove rows with value 2 in the column related from df
+    df = df[df['related'] != 2]
+
     return df
 
 
