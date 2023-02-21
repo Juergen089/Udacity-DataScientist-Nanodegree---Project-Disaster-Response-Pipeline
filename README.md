@@ -9,7 +9,10 @@
 <a name="descripton"></a>
 ## Description
 
+
 ![Alt-Text](./pic/help.jpg)
+
+
 
 This project "Disaster Response Pipeline" is part of the Udacity Data Scientist Nanodegree in cooperation with Figure Eight.
 The target of the project is to classify disaster messages based on data from real disasters with the help of a Natural Language Processing Model (NLP).
@@ -17,6 +20,8 @@ The target of the project is to classify disaster messages based on data from re
 Proceeding with the **help of machine learning** has the **advantage** that disaster messages coming in via the various channels can be **classified quickly** without having to read through the entire text manually. This means that they **can then be assigned** by several disaster response agencies **immediately** and in a **targeted manner** to the right aid organization.
 
 **This will help the disaster victims to receive prompt medical aid and speedy recovery from the effects of the disasters.**
+
+
 
 This project is clustered in three Python scripts:
 
